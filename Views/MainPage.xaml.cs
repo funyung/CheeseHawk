@@ -1,4 +1,4 @@
-﻿namespace CheeseHawk;
+﻿namespace CheeseHawk.Views;
 
 public partial class MainPage : ContentPage
 {
@@ -19,6 +19,18 @@ public partial class MainPage : ContentPage
 			CounterBtn.Text = $"Clicked {count} times";
 
 		SemanticScreenReader.Announce(CounterBtn.Text);
+	}
+
+	private void OnCounterClicked2(object sender, EventArgs e)
+	{
+		count++;
+
+		if (count == 1)
+			CounterBtn2.Text = $"Clicked {count} time";
+		else
+			CounterBtn2.Text = $"Clicked {count} times";
+
+		SemanticScreenReader.Announce(CounterBtn2.Text);
 	}
 }
 

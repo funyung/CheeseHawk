@@ -10,10 +10,10 @@ namespace CheeseHawk.Models
     public class User
     {
         [Key]
-        public int UserId { get; set; }
+        public int Id { get; set; }
+		public string UserName { get; set; }
+		public int PhoneNumber { get; set; }
 
-        public int ContactId { get; set; }
-
-        public List<UserContact>    Contacts;
+		public List<UserContact>    Contacts;
     }
 }

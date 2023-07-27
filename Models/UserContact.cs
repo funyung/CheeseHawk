@@ -9,12 +9,24 @@ namespace CheeseHawk.Models
 {
     public class UserContact
     {
-		[Key]
-		public int ContactId { get; set; }
-		public string	Email { get; set; }
-		[Required]
-		public string	PhoneNumber { get; set; }
-		public bool		IsPaymentRequested { get; set; }
+		public UserContact( string name, int phone )
+		{
+			Name = name;
+			PhoneNumber = phone;
+		}
+
+		public string	Name { get; set; }
+		public int		PhoneNumber { get; set; }
+
+		public bool		IsPaymentRequested() 
+		{
+			if(RequestedPayments.Count > 0)
+			{
+				return true;
+			}
+
+			return false;
+		}
 
 		public List<PaymentRequest> RequestedPayments;
 
