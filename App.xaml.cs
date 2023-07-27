@@ -1,11 +1,20 @@
-﻿namespace CheeseHawk;
+﻿using CheeseHawk.Services;
+using Microsoft.EntityFrameworkCore;
 
-public partial class App : Application
+namespace CheeseHawk
 {
-	public App()
+	public partial class App : Application
 	{
-		InitializeComponent();
+		public App()
+		{
+			InitializeComponent();
 
-		MainPage = new AppShell();
+			CheeseHawkContext context = new CheeseHawkContext();
+			DatabaseInitializer startup = new DatabaseInitializer(context);
+
+			startup.InitializeDB();
+
+			MainPage = new AppShell();
+		}
 	}
 }

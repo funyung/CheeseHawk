@@ -3,17 +3,24 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 			 xmlns:models="clr-namespace:CheeseHawk.ViewModels"
              x:Class="CheeseHawk.Views.AboutPage"
-             Title="About">
+             Title="AboutPage">
 	<ContentPage.BindingContext>
-		<models:About/>
+		<models:About />
 	</ContentPage.BindingContext>
-    <VerticalStackLayout Spacing="10" Margin="10">
-		<HorizontalStackLayout>
-			<Label FontSize="22" FontAttributes="Bold" Text="{Binding Title}" VerticalOptions="End"/>
-			<Label FontSize="22" Text="{Binding Version}" VerticalOptions="End"/>
+	<VerticalStackLayout Spacing="10" Margin="30">
+		<HorizontalStackLayout Spacing="5">
+			<Label FontSize="22" 
+				   FontAttributes="Bold" 
+				   Text="{Binding Title}" 
+				   VerticalOptions="End"/>
+			<Label FontSize="22" 
+				   Text="{Binding Version}" 
+				   VerticalOptions="End"/>
 		</HorizontalStackLayout>
 		
 		<Label Text="{Binding Message}"/>
-		<Button Text="View Github Page" Clicked="LearnMore_Clicked"/>
+		<Button Text="View Github Page" 
+				Clicked="LearnMore_Clicked" 
+				HorizontalOptions="Start"/>
 	</VerticalStackLayout>
 </ContentPage>

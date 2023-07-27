@@ -1,15 +1,17 @@
-namespace CheeseHawk.Views;
+using CheeseHawk.ViewModels;
 
-public partial class AboutPage : ContentPage
+namespace CheeseHawk.Views
 {
-	public AboutPage()
+	public partial class AboutPage : ContentPage
 	{
-		InitializeComponent();
-	}
-
-	private async void LearnMore_Clicked(object sender, EventArgs e)
-	{
-		if(BindingContext is ViewModels.About about)
-			await Launcher.Default.OpenAsync(about.MoreInfoUrl);
+		public AboutPage()
+		{
+			InitializeComponent();
+		}
+		private async void LearnMore_Clicked(object sender, EventArgs e)
+		{
+			if (BindingContext is ViewModels.About about)
+				await Launcher.Default.OpenAsync(about.MoreInfoUrl);
+		}
 	}
 }

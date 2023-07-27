@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CheeseHawk.Models
+﻿namespace CheeseHawk.Models
 {
-    public class UserContact
+    public class Contact
     {
-		public UserContact( string name, int phone )
+		public Contact( string name, int phone )
 		{
 			Name = name;
 			PhoneNumber = phone;

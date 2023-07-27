@@ -9,11 +9,16 @@
 	<TabBar>
 		<ShellContent
         Title="CheeseHawk"
-        ContentTemplate="{DataTemplate views:MainPage}" />
+        ContentTemplate="{DataTemplate views:MainPage}" 
+		Route="MainPage"/>
 
 		<ShellContent
 		Title="New User"
 		ContentTemplate="{DataTemplate views:NewUserPage}" />
+
+		<ShellContent
+		Title="All Users"
+		ContentTemplate="{DataTemplate views:AllUsersPage}" />
 
 		<ShellContent
 		Title="Add Contact"
@@ -21,7 +26,7 @@
 
 		<ShellContent
 		Title="About"
-		ContentTemplate="{DataTemplate views:About}" />
+		ContentTemplate="{DataTemplate views:AboutPage}" />
 	</TabBar>
     
 

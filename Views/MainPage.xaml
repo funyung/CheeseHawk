@@ -1,12 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="CheeseHawk.Views.MainPage">
-
-    <ScrollView>
+			 xmlns:models="clr-namespace:CheeseHawk.ViewModels"
+			 xmlns:viewmodel="clr-namespace:CheeseHawk.ViewModels"
+             x:Class="CheeseHawk.Views.MainPage"
+			 x:DataType="viewmodel:StartingPage"
+			 >
+	<ScrollView>
 		<VerticalStackLayout
-            Spacing="15"
-            Padding="30,0"
+            Spacing="12"
+            Padding="30"
             VerticalOptions="Center">
 
 			<Label
@@ -18,25 +21,23 @@
             <Label
                 Text="Create a user or choose an existing one"
                 SemanticProperties.HeadingLevel="Level2"
-                SemanticProperties.Description="Welcome to dot net Multi platform App U I"
                 FontSize="18"
                 HorizontalOptions="Center" />
 
             <Button
-                x:Name="CounterBtn"
                 Text="Existing User"
-                SemanticProperties.Hint="Counts the number of times you click"
-                Clicked="OnCounterClicked"
-                HorizontalOptions="Center" />
-			
-			<Button
-                x:Name="CounterBtn2"
-                Text="New User"
-                SemanticProperties.Hint="Counts the number of times you click"
-                Clicked="OnCounterClicked2"
+                Command="{Binding GoToAllUsersPageCommand}"
+				IsEnabled="True"
                 HorizontalOptions="Center" />
 
-        </VerticalStackLayout>
+			<Button
+                Text="New User"
+                Command="{Binding GoToNewUserPageCommand}"
+				IsEnabled="True"
+                HorizontalOptions="Center" />
+
+
+		</VerticalStackLayout>
     </ScrollView>
 
 </ContentPage>
