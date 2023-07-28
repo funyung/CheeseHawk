@@ -10,14 +10,14 @@ namespace CheeseHawk.Services
 {
     public class DatabaseHandler
     {
-        private readonly CheeseHawkContext _context;
+		private readonly CheeseHawkContext _context;
 
         public DatabaseHandler(CheeseHawkContext context)
         { 
             _context = context;
 		}
 
-        public async Task AddUser( string username, string phonenumber )
+        public async Task AddContact( string username, string phonenumber )
         {
             string newId = Guid.NewGuid().ToString();
 
@@ -42,10 +42,34 @@ namespace CheeseHawk.Services
             _context.SaveChanges();
         }
 
-		public List<UserContact> GetAllUserContacts()
+		public async Task AddPaymentRequest(string requestorName, decimal amount, string reason)
 		{
-			return _contacts;
+            var req = _context.Users.FromSql
+                ($"SELECT iD FROM Users WHERE UserName={requestorName}");
+
+            PaymentRequest newRequest = new PaymentRequest()
+            {
+                ContactId = requestorName,
+                Amount = amount,
+                Reason = reason
+            };
+
+            _context.PaymentRequests.Add(newRequest);
+            await _context.SaveChangesAsync();
 		}
+
+        public decimal TotalContactsTab(string contactId)
+        {
+            var req = _context.PaymentRequests
+                .FromSql($"SELECT Amount FROM PaymentRequests WHERE ContactId={contactId}")
+                .ToList();
+            decimal total = 0;
+            foreach ( var contact in req )
+            {
+                total += contact.Amount;
+            }
+            return total;
+        }
 
         public void GetOldestContact()
         {

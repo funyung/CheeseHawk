@@ -20,7 +20,7 @@ namespace CheeseHawk
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
             modelBuilder.Entity<UserContact>().ToTable("Users");
-            //modelBuilder.Entity<PaymentRequest>().ToTable("PaymentRequests");
+            modelBuilder.Entity<PaymentRequest>().ToTable("PaymentRequests");
 		}
 	}
 }
