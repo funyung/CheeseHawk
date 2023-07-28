@@ -2,13 +2,9 @@
 
 namespace CheeseHawk.Models
 {
-    public class UserContact
+    public class UserContact : BaseModel
     {
-        [Key]
-        public String Id { get; set; }
 		public string UserName { get; set; }
 		public string PhoneNumber { get; set; }
-
-		public List<int> ContactIds;
 	}
 }

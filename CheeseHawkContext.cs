@@ -5,10 +5,7 @@ namespace CheeseHawk
 {
     public class CheeseHawkContext : DbContext
     {
-        public DbSet<UserContact> Users { get; set; }
-
-        public DbSet<PaymentRequest> PaymentRequests { get; set; }
-
+        public DbSet<BaseModel> Records { get; set; }
 
 		public CheeseHawkContext() : base()
         {
@@ -19,8 +16,19 @@ namespace CheeseHawk
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
-            modelBuilder.Entity<UserContact>().ToTable("Users");
-            modelBuilder.Entity<PaymentRequest>().ToTable("PaymentRequests");
+			modelBuilder.Entity<BaseModel>().UseTpcMappingStrategy();
+
+            modelBuilder.Entity<UserContact>().ToTable("UserContact"/*,
+				builder =>
+				{
+					builder.Property(user => user.Id).HasColumnName("userId");
+				}*/);
+
+			modelBuilder.Entity<PaymentRequest>().ToTable("PaymentRequests"/*,
+				builder =>
+				{
+					builder.Property(user => user.Id).HasColumnName("paymentId");
+				}*/);
 		}
 	}
 }

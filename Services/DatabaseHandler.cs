@@ -28,14 +28,18 @@ namespace CheeseHawk.Services
 				PhoneNumber = phonenumber
 			};
 
-            _context.Users.Add(newuser);
+            _context.Records.Add(newuser);
             await _context.SaveChangesAsync();
 		}
 
 		UserContact GetContactByID(string id)
 		{
-			return _context.Users.SingleOrDefault(x => x.Id == id);
+			return _context.Records.OfType<UserContact>().SingleOrDefault(x => x.Id == id);
 		}
+        public List<UserContact> GetAllContacts() 
+        {
+            return _context.Records.OfType<UserContact>().ToList();
+        }
 		public void RemoveUserContact(string userId)
         {
             _context.Remove(GetContactByID(userId));
@@ -44,36 +48,36 @@ namespace CheeseHawk.Services
 
 		public async Task AddPaymentRequest(string requestorName, decimal amount, string reason)
 		{
-            var req = _context.Users.FromSql
-                ($"SELECT iD FROM Users WHERE UserName={requestorName}");
+            var req = _context.Records.FromSql
+                ($"SELECT iD FROM UserContact WHERE UserName={requestorName}");
 
             PaymentRequest newRequest = new PaymentRequest()
             {
-                ContactId = requestorName,
+                Id = requestorName,
                 Amount = amount,
                 Reason = reason
             };
 
-            _context.PaymentRequests.Add(newRequest);
+            _context.Records.Add(newRequest);
             await _context.SaveChangesAsync();
 		}
 
-        public decimal TotalContactsTab(string contactId)
+        public decimal GetContactsTotalTab(string contactId)
         {
-            var req = _context.PaymentRequests
-                .FromSql($"SELECT Amount FROM PaymentRequests WHERE ContactId={contactId}")
-                .ToList();
+            var req = _context.Records.OfType<PaymentRequest>().ToList();
+
             decimal total = 0;
-            foreach ( var contact in req )
+            foreach ( var payment in req )
             {
-                total += contact.Amount;
+                if(payment.Id == contactId)
+                total += payment.Amount;
             }
             return total;
         }
 
         public void GetOldestContact()
         {
-		    var lastDbContact = _context.Users.FromSql
+		    var lastDbContact = _context.Records.FromSql
                 ($"SELECT * FROM Users ORDER BY iD DESC LIMIT 1").Single();
 
             Console.WriteLine(lastDbContact + " is your oldest contact!\n");
