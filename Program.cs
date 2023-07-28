@@ -22,6 +22,10 @@ namespace CheeseHawk
 			while (run)
 			{
 				Console.WriteLine("Use the commands below to interact.");
+				Console.WriteLine("1. Report of your contacts. *");
+				Console.WriteLine("2. Create a new contact.");
+				Console.WriteLine("3. Creat a payment request. *");
+				Console.WriteLine("4. Get oldest contact.");
 				string input = Console.ReadLine();
 
 				switch (input)
@@ -33,11 +37,25 @@ namespace CheeseHawk
 							Console.Write(c.UserName + " ");
 							Console.Write("-------- ");
 							Console.Write(c.PhoneNumber + " ");
-							Console.Write("-------- ");
-							Console.Write( handler.GetContactsTotalTab(c.Id).ToString() + "\n" );
+							Console.Write("-------- \n");
+							//Console.Write( handler.GetContactsTotalTab(c.ContactId).ToString() + "\n" );
 						}
 						Console.WriteLine("===================");
 						Console.WriteLine("                   ");
+						break;
+					case "2":
+						Console.WriteLine("What is the username?");
+						string newName = Console.ReadLine();
+
+						Console.WriteLine("What is their phone number?");
+						string newNumber = Console.ReadLine();
+
+						handler.AddContact(newName, newNumber);
+						break;
+					case "3":
+						break;
+					case "4":
+						handler.GetOldestContact();
 						break;
 					default:
 						Console.WriteLine("Sorry, not a valid input.");

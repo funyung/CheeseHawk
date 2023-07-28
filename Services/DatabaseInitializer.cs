@@ -19,19 +19,13 @@ namespace CheeseHawk.Services
 
                 UserContact firstcontact = new UserContact()
                 {
-                    Id = Guid.NewGuid().ToString(),
+                    ContactId = Guid.NewGuid().ToString(),
                     UserName = "funkydude01",
-                    PhoneNumber = "4206969"
+                    PhoneNumber = "4206969",
+                    Amount = 0.0m
                 };
 
-                PaymentRequest firstpayment = new PaymentRequest()
-                {
-                    Id = firstcontact.Id,
-                    Amount = 20,
-                    Reason = "He owes me..."
-                };
-                _context.Records.Add(firstcontact);
-                _context.Records.Add(firstpayment);
+                _context.UserContacts.Add(firstcontact);
 
                 _context.SaveChanges();
             }
