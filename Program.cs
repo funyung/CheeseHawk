@@ -24,7 +24,7 @@ namespace CheeseHawk
 				Console.WriteLine("Use the commands below to interact.");
 				Console.WriteLine("1. Report of your contacts. *");
 				Console.WriteLine("2. Create a new contact.");
-				Console.WriteLine("3. Creat a payment request. *");
+				Console.WriteLine("3. Create a payment request. *");
 				Console.WriteLine("4. Get oldest contact.");
 				string input = Console.ReadLine();
 

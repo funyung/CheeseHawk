@@ -79,7 +79,7 @@ namespace CheeseHawk.Services
         public void GetOldestContact()
         {
 		    var lastDbContact = _context.UserContacts.FromSql
-                ($"SELECT * FROM UserContacts ORDER BY iD DESC LIMIT 1").Single();
+                ($"SELECT * FROM UserContacts ORDER BY ContactId DESC LIMIT 1").Single();
 
             Console.WriteLine(lastDbContact + " is your oldest contact!\n");
         }

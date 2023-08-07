@@ -11,12 +11,13 @@ namespace CheeseHawk
         {
 		}
 
-        protected override void OnConfiguring(DbContextOptionsBuilder options)
-            => options.UseSqlite($"Data Source=./cheesehawk.db;");
+		protected override void OnConfiguring(DbContextOptionsBuilder options)
+			=> options.UseSqlite($"Data Source=./cheesehawk.db;");
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
-			modelBuilder.Entity<UserContact>().ToTable("UserContacts");
+			modelBuilder.Entity<UserContact>().ToTable("UserContacts")
+				.Property(entity => entity.Amount).HasColumnName("Amount");
 		}
 	}
 }
